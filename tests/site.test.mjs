@@ -37,3 +37,11 @@ test('public package includes an intact playground handoff', async () => {
   assert.match(workflow, /sha256sum index\.html site\.css play\/index\.html > release-manifest\.sha256/);
   assert.match(workflow, /test -s _site\/play\/index\.html/);
 });
+
+test('PR test workflow executes the exact PR head, never an implicit merge commit', async () => {
+  const workflow = await readFile(new URL('../.github/workflows/site-check.yml', import.meta.url), 'utf8');
+  assert.match(workflow, /ref: \$\{\{ github\.event\.pull_request\.head\.sha \|\| github\.sha \}\}/);
+  assert.match(workflow, /EXPECTED_HEAD_SHA: \$\{\{ github\.event\.pull_request\.head\.sha \|\| github\.sha \}\}/);
+  assert.match(workflow, /test "\$\(git rev-parse HEAD\)" = "\$EXPECTED_HEAD_SHA"/);
+  assert.match(workflow, /git rev-parse HEAD\^\{tree\}/);
+});
