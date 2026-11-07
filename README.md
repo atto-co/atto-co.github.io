@@ -22,3 +22,7 @@ The scope above is a planning description, not evidence of implemented functiona
 
 - [Atto company](https://github.com/atto-co)
 - [AttoLang](https://github.com/atto-lang)
+
+## AttoLang Playground
+
+The company site's proposed `/play/` route redirects to the open-language [browser playground](https://atto-lang.github.io/play/). The implementation lives in [atto-lang/atto-lang.github.io PR #1](https://github.com/atto-lang/atto-lang.github.io/pull/1) and its canonical runtime project is [atto-lang/atto-playground PR #1](https://github.com/atto-lang/atto-playground/pull/1). Treat the site as a preview until GitHub Pages deployment and live browser execution are verified. The editor compiles and executes an explicit scalar M0 subset on-device without a compilation server.
