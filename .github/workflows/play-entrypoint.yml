@@ -1,0 +1,35 @@
+name: AttoCo playground redirect boundary (source only)
+on:
+  pull_request:
+    paths:
+      - 'play/**'
+      - 'tests/play-entrypoint.test.mjs'
+      - '.github/workflows/play-entrypoint.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'play/**'
+      - 'tests/play-entrypoint.test.mjs'
+      - '.github/workflows/play-entrypoint.yml'
+permissions:
+  contents: read
+jobs:
+  redirect-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact source checkout
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          git rev-parse HEAD
+          git rev-parse HEAD^{tree}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Execute AttoCo redirect contract (not remote release certification)
+        run: node --test tests/play-entrypoint.test.mjs
