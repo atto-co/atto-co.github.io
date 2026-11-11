@@ -31,6 +31,11 @@ test('public package includes an intact playground handoff', async () => {
   assert.match(handoff, /<link rel="canonical" href="https:\/\/atto-lang\.github\.io\/play\/">/);
   assert.match(handoff, /<a href="https:\/\/atto-lang\.github\.io\/play\/">/);
   assert.doesNotMatch(handoff, /<script\b|<iframe\b|javascript:/i);
+  assert.match(handoff, /default-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'/);
+  assert.match(handoff, /<meta name="referrer" content="no-referrer">/);
+  assert.match(handoff, /rel="noreferrer noopener"/);
+  assert.match(handoff, /redirects to the independent AttoLang website/i);
+  assert.doesNotMatch(handoff, /<form\b|<object\b|<embed\b/i);
   const workflow = await readFile(new URL('../.github/workflows/pages.yml', import.meta.url), 'utf8');
   assert.match(workflow, /for path in index\.html site\.css play\/index\.html; do/);
   assert.match(workflow, /test "\$\(find _site -type f \| wc -l\)" -eq 3/);
