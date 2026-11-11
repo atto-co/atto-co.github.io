@@ -29,7 +29,7 @@ test('public package includes an intact playground handoff', async () => {
   const handoff = await readFile(new URL('../play/index.html', import.meta.url), 'utf8');
   assert.match(handoff, /<meta http-equiv="refresh" content="0;url=https:\/\/atto-lang\.github\.io\/play\/">/);
   assert.match(handoff, /<link rel="canonical" href="https:\/\/atto-lang\.github\.io\/play\/">/);
-  assert.match(handoff, /<a href="https:\/\/atto-lang\.github\.io\/play\/">/);
+  assert.match(handoff, /<a href="https:\/\/atto-lang\.github\.io\/play\/" rel="noreferrer noopener">/);
   assert.doesNotMatch(handoff, /<script\b|<iframe\b|javascript:/i);
   assert.match(handoff, /default-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'/);
   assert.match(handoff, /<meta name="referrer" content="no-referrer">/);
