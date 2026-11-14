@@ -33,6 +33,19 @@
       <p>The experimental playground aims to compile source code entirely within the browser. Its first milestone is a limited integer-language compiler—not proof of full language, actor, ownership or backend support.</p>
       <p>Playground availability depends on the language website and its independently verified static deployment. No user source needs to be sent to an Atto compilation service.</p>
     </section>
+    <section class="card" aria-labelledby="cloud-heading">
+      <p class="eyebrow">Optional commercial infrastructure · planning stage</p>
+      <h2 id="cloud-heading">Proposed Atto Cloud service areas</h2>
+      <p>These projects are experimental service foundations, not evidence of a deployed or production-ready cloud. AttoLang local execution does not depend on a hosted Atto account or compilation server.</p>
+      <ul>
+        <li><a href="https://github.com/atto-co/atto-cloud-control-plane.rs">Control plane</a> — tenant and application lifecycle management.</li>
+        <li><a href="https://github.com/atto-co/atto-build-farm.rs">Build farm</a> — isolated builds and artifact provenance.</li>
+        <li><a href="https://github.com/atto-co/atto-runtime-host.rs">Runtime hosting</a> — tenant execution boundaries and resource quotas.</li>
+        <li><a href="https://github.com/atto-co/atto-deploy.rs">Deployment service</a> — staged releases, health gates, and rollback.</li>
+        <li><a href="https://github.com/atto-co/atto-observability.rs">Observability</a> — tenant-scoped operational telemetry.</li>
+      </ul>
+      <p>Review each repository and its draft proposals to distinguish planned functionality from tested implementations.</p>
+    </section>
   </main>
   <footer class="container">Atto · <a href="https://github.com/atto-lang">Language organization</a> · <a href="https://github.com/atto-co">Company organization</a></footer>
 </body>
